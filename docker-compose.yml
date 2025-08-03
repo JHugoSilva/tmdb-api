@@ -1,0 +1,70 @@
+services:
+  app:
+    build:
+      context: ./docker/php
+    container_name: lwsa-app
+    working_dir: /var/www
+    volumes:
+      - ./backend:/var/www
+    networks:
+      - lwsa_net
+
+  mysql:
+    image: mysql:8
+    container_name: mysql_lwsa
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: lwsa_db
+    ports:
+      - "3308:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - lwsa_net
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx_lwsa
+    ports:
+      - "8088:80"
+    volumes:
+      - ./backend:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - lwsa_net
+
+  frontend:
+    image: node:18-alpine
+    container_name: vue_lwsa
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    command: sh -c "npm install && npm run dev"
+    ports:
+      - "5177:5173"
+    networks:
+      - lwsa_net
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_lwsa
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+    networks:
+      - lwsa_net
+
+volumes:
+  dbdata:
+
+networks:
+  lwsa_net:
+    driver: bridge
+
