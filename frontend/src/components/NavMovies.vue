@@ -14,6 +14,19 @@ const search = ref("");
 // Filtro de gênero
 const selected = ref("");
 
+const menuAberto = ref(false)
+
+function toggleMenu() {
+  menuAberto.value = !menuAberto.value
+}
+
+const menuClasses = computed(() => {
+  return [
+    'w-full md:flex md:items-center md:w-auto md:order-1',
+    menuAberto.value ? 'block' : 'hidden',
+  ]
+})
+
 const onSearch = debounce(() => {
   emit("search", search.value);
 }, 400);
@@ -81,7 +94,7 @@ const onFilter = () => {
 
     <!-- Menu de navegação -->
     <div
-      :class="['w-full md:flex md:items-center md:w-auto md:order-1', menuAberto ? 'block' : 'hidden']"
+      :class="menuClasses"
       id="navbar-search"
     >
       <ul class="flex flex-col md:flex-row md:space-x-8 md:mt-0 mt-4 font-medium">
