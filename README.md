@@ -87,11 +87,21 @@ DB_PASSWORD=root
 
 ### 6. Executar Makefile 
 
-* Corrigir permissões
+###### * Corrigir permissões
+
 * Instalar dependências PHP com composer
 * Gerar chave de app
 * Subir containers e construir do zero
 * Rodar migrations
+* Comandos para executar Makefile conforme a necessidade:
+* ```
+  make setup         # Sobe tudo e configura Laravel
+  make up            # Só sobe e builda
+  make migrate       # Só roda migrations
+  make down          # Para containers
+  make clean         # Remove tudo (containers, volumes e imagens)
+
+  ```
 
 ### 6. Acesse a aplicação e testando
 
