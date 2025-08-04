@@ -1,4 +1,3 @@
-
 Este README fornece instruções completas para configurar e executar o projeto Laravel localmente usando o docker.
 
 ## 📌 **Visão Geral**
@@ -56,8 +55,7 @@ docker-compose exec app php artisan key:generate
 
 Comandos para permissão
 
-docker exec tmdb-app sh -c "chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache && chmod -R 775 /var/www/storage /var/www/bootst
-rap/cache"
+docker exec tmdb-app sh -c "chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache && chmod -R 775 /var/www/storage /var/www/bootstrap/cache"
 
 ### 5. Execute as migrations
 

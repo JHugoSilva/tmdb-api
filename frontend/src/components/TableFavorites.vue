@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import Swal from 'sweetalert2'
 
 const props = defineProps(["favorites"]);
 
@@ -16,8 +17,10 @@ const filmeSelecionado = ref(null);
 
 // Métodos
 const abrirTrailer = (filme) => {
-  if (!filme?.trailer) return;
-
+   if (!filme?.trailer || !filme.trailer.includes('v=')) {
+    Swal.fire('Erro!', 'Trailer inválido ou ausente.', 'error')
+    return;
+  }
   try {
     const trailer = JSON.parse(filme.trailer);
     const videoId = trailer.key.split("v=")[1]?.split("&")[0] || trailer.key;
@@ -37,7 +40,10 @@ const fecharTrailer = () => {
 <template>
   <div class="container mx-auto mt-20">
     <!-- Aumentei o mt para acomodar a navbar fixa -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      v-if="props.favorites.length > 0"
+    >
       <div
         v-for="favorite in props.favorites"
         :key="favorite.id"
@@ -71,13 +77,38 @@ const fecharTrailer = () => {
           <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-2 line-clamp-1">
             {{ favorite.title }}
           </h3>
+          <!-- Tagline -->
+          <p
+            class="italic text-sm text-gray-600 dark:text-gray-400 mb-1 line-clamp-1"
+          >
+            "{{ favorite.tagline || "Slogan não localizada" }}"
+          </p>
 
-          <!-- Botão de trailer e remover -->
+          <div class="flex justify-between">
+            <!-- Runtime -->
+            <p v-if="favorite.runtime" class="text-sm text-gray-700 dark:text-gray-300 mb-1">
+              🕒 {{ favorite.runtime }} min
+            </p>
+
+            <!-- Homepage -->
+            <p v-if="favorite.homepage" class="text-sm">
+              <a
+                :href="favorite.homepage"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-blue-600 hover:underline"
+              >
+                Página oficial 🔗
+              </a>
+              <!-- Botão de trailer e remover -->
+            </p>
+          </div>
+
           <div class="flex flex-wrap gap-2 mt-4">
             <button
               v-if="favorite.trailer"
               @click="abrirTrailer(favorite)"
-              class="flex items-center px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+              class="flex items-center cursor-pointer px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -98,7 +129,7 @@ const fecharTrailer = () => {
 
             <button
               @click="removerFavorito(favorite.id)"
-              class="flex-1 min-w-[120px] flex items-center justify-center gap-2 px-3 py-2 bg-red-600 hover:bg-red-700 text-white text-sm rounded transition-colors"
+              class="flex-1 min-w-[120px] cursor-pointer flex items-center justify-center gap-2 px-3 py-2 bg-red-600 hover:bg-red-700 text-white text-sm rounded transition-colors"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -114,7 +145,12 @@ const fecharTrailer = () => {
         </div>
       </div>
     </div>
-
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[300px] place-items-center"
+      v-else
+    >
+      <h1 class="text-center text-xl text-gray-500 font-semibold">Nenhum favorito selecionado.</h1>
+    </div>
     <div
       v-if="trailerAtivo"
       class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center"
