@@ -14,61 +14,92 @@ Aplicação web desenvolvida com Laravel, incluindo:
 ## 🛠️ **Pré-requisitos**
 
 * Docker instalado ([Download Docker](https://www.docker.com/get-started))
-* Docker Compose (vem com o Docker Desktop)
 * Git ([Download Git](https://git-scm.com/downloads))
 
 ## 🚀 **Passo a Passo para Execução**
 
 ### 1. Clone o repositório
 
-git clone https://github.com/JHugoSilva/tmdb-api.git
+```
+`git clone https://github.com/JHugoSilva/tmdb-api.git`
+```
 
-### 2. Configure o ambiente do Laravel
+### 2. Acessar a pasta do projeto
 
+```
 cd tmdb-api/
+```
 
-Crie o arquivo `.env` baseado no exemplo:
+### 3. Configurar .env
 
+```
 cp backend/.env.example backend/.env
+```
 
-Edite o `.env` com estas configurações mínimas:
+### 4. Configurar conexão ao banco de dados
 
-Exemplo:
+###### *Editar .env*Conexões do banco de dados
 
+```
 DB_CONNECTION=mysql
 DB_HOST=tmdb_mysql
 DB_PORT=3306
 DB_DATABASE=tmdb_db
 DB_USERNAME=root
 DB_PASSWORD=root
+```
 
-### 3. Construa e inicie os containers
+### **5. Como obter a chave da API do TMDB**
 
-docker-compose up -d --build
+### Link oficial do TMDB:
 
-### 4. Execute os comandos de instalação
+**[https://www.themoviedb.org/]()**
 
-Instale as dependências PHP e gere a chave da aplicação:
+---
 
-docker-compose exec app composer install
-docker-compose exec app php artisan key:generate
+### Passos para criar a conta e gerar a chave da API:
 
-Comandos para permissão
+1. **Acesse o site do TMDB:**
 
-docker exec tmdb-app sh -c "chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache && chmod -R 775 /var/www/storage /var/www/bootstrap/cache"
+   [https://www.themoviedb.org/signup]()
+2. **Crie uma conta gratuita**
 
-### 5. Execute as migrations
+   * Forneça um nome de usuário, e-mail e senha.
+   * Confirme o e-mail enviado pelo TMDB.
+3. **Acesse as configurações da conta:**
 
-docker-compose exec app php artisan migrate
+   * Após fazer login, clique na sua imagem de perfil (canto superior direito) e vá até  **"Settings"** .
+   * No menu lateral, clique em  **"API"** .
+4. **Solicite uma API Key:**
 
-### 6. Acesse a aplicação
+   * Escolha entre os tipos de chave:  **Developer** ,  **Personal** , ou  **Commercial** .
+   * Preencha os dados solicitados (nome da aplicação, descrição, site — opcional para uso pessoal).
+   * Clique em  **"Submit"** .
+   * ###### Configurar Chave e URL da API em .env do Laravel
 
-A aplicação estará disponível em:
-[http://localhost:8088](http://localhost:8088)
+     ```
+     TMDB_API_KEY=<adicione_sua_chave_aqui>
+     TMDB_BASE_URL=https://api.themoviedb.org/3
 
-Rota de teste para API:
+     ```
 
-[http://localhost:8088/api/ping](http://localhost:8088/api/ping)
+---
 
-O PHPMyAdmin estará disponível em:
-[http://localhost:8081](http://localhost:8081/)
+### 6. Executar Makefile 
+
+* Corrigir permissões
+* Instalar dependências PHP com composer
+* Gerar chave de app
+* Subir containers e construir do zero
+* Rodar migrations
+
+### 6. Acesse a aplicação e testando
+
+* [X] [Rota para testar API](http://localhost:8088/api/ping)
+* [X] [Acessar o banco de dados](http://localhost:8081/index.php)
+
+1. **Usuário: root**
+2. **Senha: root
+   *Obs*: phpMyAdmin, para facilitar o acesso e a visualização dos dados.**
+
+* [X] [Front End VueJS](http://localhost:5177/)

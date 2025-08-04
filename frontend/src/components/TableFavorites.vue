@@ -38,7 +38,7 @@ const fecharTrailer = () => {
 };
 </script>
 <template>
-  <div class="container mx-auto mt-20">
+  <div class="container mx-auto mt-5">
     <!-- Aumentei o mt para acomodar a navbar fixa -->
     <div
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
