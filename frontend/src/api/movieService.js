@@ -9,18 +9,19 @@ const movieService = {
   getMovieByName(name) {
     return apiClient.get(`/movies/search?query=${name}`)
   },
+  //Busca todos os favoritos
+  getAllFavorites() {
+    return apiClient.get('/favorites')
+  },
   // Adicionar Favorito
   addToFavorites(id) {    
     return apiClient.post('/favorites', {id:id})
-  },
-  getAllFavorites() {
-    return apiClient.get('/favorites')
   },
   // Remove favorito
   removeFavorites(id) { 
     return apiClient.delete(`/favorites/${id}`)
   },
-  // Buscar generos filmes
+  // Buscar generos dos filmes
   getGender() {
     return apiClient.get(`/favorites/genres`)
   }

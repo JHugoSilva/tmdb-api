@@ -17,4 +17,11 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  server: {
+    host: "0.0.0.0",           // ou '0.0.0.0'
+    port: 5173,           // ou outro que estiver mapeado no docker-compose
+    watch: {
+      usePolling: true    // essencial no Docker (Linux/WSL)
+    }
+  }
 })

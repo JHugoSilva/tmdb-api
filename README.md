@@ -26,7 +26,7 @@ git clone https://github.com/JHugoSilva/tmdb-api.git
 
 ### 2. Configure o ambiente do Laravel
 
-cd tmdb-api/backend
+cd tmdb-api/
 
 Crie o arquivo `.env` baseado no exemplo:
 

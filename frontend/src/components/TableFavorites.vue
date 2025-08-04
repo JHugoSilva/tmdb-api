@@ -38,7 +38,6 @@ const fecharTrailer = () => {
   <div class="container mx-auto mt-20">
     <!-- Aumentei o mt para acomodar a navbar fixa -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- {{ props.favorites[0].trailer }} -->
       <div
         v-for="favorite in props.favorites"
         :key="favorite.id"
