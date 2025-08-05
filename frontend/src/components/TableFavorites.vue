@@ -56,7 +56,7 @@ const fecharTrailer = () => {
             :src="
               favorite.poster_path
                 ? 'https://image.tmdb.org/t/p/w500' + favorite.poster_path
-                : '/placeholder-movie.jpg'
+                : 'https://placehold.co/600x400'
             "
             :alt="'Poster do filme ' + favorite.title"
             loading="lazy"

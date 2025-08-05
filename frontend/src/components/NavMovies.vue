@@ -94,19 +94,7 @@ const onFilter = () => {
               </template>
 
               <template v-else>
-                <!-- <select
-                  v-model="selected"
-                  @change="onFilter"
-                  class="block border py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
-                >
-                  <option value="">Todos os Gêneros</option>
-                  <option v-for="(genre, index) in props.genres.data" :key="index" :value="genre">
-                    {{ genre }}
-                  </option>
-                </select> -->
-
               <div class="max-w-sm mx-auto">
-              <!-- <label for="genre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label> -->
               <select v-model="selected"
                   @change="onFilter" id="genre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="">Todos os Gêneros</option>

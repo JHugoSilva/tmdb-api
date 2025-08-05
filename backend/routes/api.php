@@ -15,6 +15,6 @@ Route::delete('/favorites/{id}', [FavoriteMovieController::class, 'destroy']);
 
 //Rota para testar a API
 Route::get('/ping', function(){
-    return 'pong';
+    return 'Pingou a API Laravel TMDB';
 });
 

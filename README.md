@@ -4,7 +4,7 @@
 
 * ✅ API RESTful
 * ✅ Integração com banco de dados
-* ✅ Buscar filmes pelo nome usando a API do TMDB
+* ✅ Buscar filmes pelo nome usando da API do TMDB
 * ✅ Adicionar filmes aos favoritos, salvando os dados localmente
 * ✅ Listar filmes favoritos em uma tela dedicada, com filtro por gênero
 * ✅ Remover filmes da lista de favoritos
@@ -69,19 +69,21 @@ DB_PASSWORD=root
    * No menu lateral, clique em  **"API"** .
 3. **Solicite uma API Key:**
 
-   * Escolha entre os tipos de chave:  **Developer** ,  **Personal** , ou  **Commercial** .
-   * Preencha os dados solicitados (nome da aplicação, descrição, site — opcional para uso pessoal).
-   * Clique em  **"Submit"** .
-   * ###### Configurar Chave e URL da API em .env do Laravel
+   Escolha entre os tipos de chave:  **Developer** ,  **Personal** , ou  **Commercial** .
 
-     "Adicione essas duas linhas no final do arquivo"
+   Preencha os dados solicitados (nome da aplicação, descrição, site — opcional para uso pessoal).
 
+   Clique em  **"Submit"** .
 
-     ```
-     TMDB_API_KEY=<adicione_sua_chave_aqui>
-     TMDB_BASE_URL=https://api.themoviedb.org/3
+   **Configurar Chave e URL da API no arquivo .env do Laravel**
 
-     ```
+   "Adicione essas duas linhas no final do arquivo"
+
+   ```
+   TMDB_API_KEY=<adicione_sua_chave_aqui>
+   TMDB_BASE_URL=https://api.themoviedb.org/3
+
+   ```
 
 ---
 
