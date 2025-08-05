@@ -39,12 +39,12 @@ A seguir estão os principais diretórios/arquivos onde o CRUD está implementad
 
 #### Vue.js (Frontend)
 
-| Componente                          | Caminho                                                | Descrição                      |
-| ----------------------------------- | ------------------------------------------------------ | -------------------------------- |
-| **Listar Filmes da API TMDB** | `frontend/src/components/MoviesList.vue`             | Lista todos os filmes            |
-| **Lista Filmes Favoritados**  | `frontend/src/components/Filmes/MoviesFavorites.vue` | Formulário de cadastro/edição |
-| **Roteamento**                | `frontend/src/router/index.js`                       | Rotas SPA                        |
-| **Integração API**          | `frontend/src/api/movieService.js`                   | Comunicação com a API Laravel  |
+| Componente                          | Caminho                                                | Descrição                                 |
+| ----------------------------------- | ------------------------------------------------------ | ------------------------------------------- |
+| **Listar Filmes da API TMDB** | `frontend/src/components/MoviesList.vue`             | Lista os filmes da API                      |
+| **Lista Filmes Favoritados**  | `frontend/src/components/Filmes/MoviesFavorites.vue` | Lista os filmes favoritados salvos no banco |
+| **Roteamento**                | `frontend/src/router/index.js`                       | Rotas SPA                                   |
+| **Integração API**          | `frontend/src/api/movieService.js`                   | Comunicação com a API Laravel             |
 
 ## 🚀 **Passo a Passo para Execução**
 
