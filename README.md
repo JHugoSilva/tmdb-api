@@ -1,8 +1,6 @@
-Este README fornece instruções completas para configurar e executar o projeto Laravel localmente usando o docker.
+# **Aplicação web desenvolvida com Laravel, VueJS e MySQL tudo Dockerizado**
 
-## 📌 **Visão Geral**
-
-Aplicação web desenvolvida com Laravel, incluindo:
+### **Check List**
 
 * ✅ API RESTful
 * ✅ Integração com banco de dados
@@ -21,7 +19,7 @@ Aplicação web desenvolvida com Laravel, incluindo:
 ### 1. Clone o repositório
 
 ```
-`git clone https://github.com/JHugoSilva/tmdb-api.git`
+git clone https://github.com/JHugoSilva/tmdb-api.git
 ```
 
 ### 2. Acessar a pasta do projeto
@@ -51,31 +49,33 @@ DB_PASSWORD=root
 
 ### **5. Como obter a chave da API do TMDB**
 
-### Link oficial do TMDB:
-
-**[https://www.themoviedb.org/]()**
+###### **[Link oficial do TMDB](https://www.themoviedb.org)**
 
 ---
 
 ### Passos para criar a conta e gerar a chave da API:
 
-1. **Acesse o site do TMDB:**
+| 1. Crie uma conta gratuita                    | Acesse sua conta caso já tenha cadastro     |
+| --------------------------------------------- | -------------------------------------------- |
+| [Clique Aqui](https://www.themoviedb.org/signup) | [Clique Aqui](https://www.themoviedb.org/login) |
 
-   [https://www.themoviedb.org/signup]()
-2. **Crie uma conta gratuita**
+1. **1 Para criar conta gratuita**
 
    * Forneça um nome de usuário, e-mail e senha.
    * Confirme o e-mail enviado pelo TMDB.
-3. **Acesse as configurações da conta:**
+2. **Acesse as configurações da conta:**
 
-   * Após fazer login, clique na sua imagem de perfil (canto superior direito) e vá até  **"Settings"** .
+   * Após fazer login, clique na sua imagem de perfil (canto superior direito) e vá até  **"Configurações"** .
    * No menu lateral, clique em  **"API"** .
-4. **Solicite uma API Key:**
+3. **Solicite uma API Key:**
 
    * Escolha entre os tipos de chave:  **Developer** ,  **Personal** , ou  **Commercial** .
    * Preencha os dados solicitados (nome da aplicação, descrição, site — opcional para uso pessoal).
    * Clique em  **"Submit"** .
    * ###### Configurar Chave e URL da API em .env do Laravel
+
+     "Adicione essas duas linhas no final do arquivo"
+
 
      ```
      TMDB_API_KEY=<adicione_sua_chave_aqui>
@@ -85,31 +85,32 @@ DB_PASSWORD=root
 
 ---
 
-### 6. Executar Makefile 
+### 6. Executar Makefile
 
-###### * Corrigir permissões
+1. Corrigir permissões de pastas do Laravel
+2. Instalar dependências PHP com composer
+3. Gerar chave de app
+4. Subir containers e construir do zero
+5. Rodar migrations
+6. Comandos para executar Makefile conforme a necessidade:| Todas as configurações informadas a cima esta automatizadas no arquivo Makefile | segue a abaixo comandos para executar as rotinas que foram configuradas.
 
-* Instalar dependências PHP com composer
-* Gerar chave de app
-* Subir containers e construir do zero
-* Rodar migrations
-* Comandos para executar Makefile conforme a necessidade:
-* ```
-  make setup         # Sobe tudo e configura Laravel
-  make up            # Só sobe e builda
-  make migrate       # Só roda migrations
-  make down          # Para containers
-  make clean         # Remove tudo (containers, volumes e imagens)
-
-  ```
+| Comando                   | Descrição                                                             |
+| ------------------------- | ----------------------------------------------------------------------- |
+| `make setup`            | Sobe tudo (VueJs, banco de dados MySQL e o Laravel) e configura Laravel |
+| `make up`               | Sobe os containers e cria as imagens                                    |
+| `make migrate`          | Só roda migrations                                                     |
+| ` make migrate-refresh` | Apaga e constroi novamente as tabela migrations                        |
+| `make down `            | Para containers                                                         |
+| `make clean`            | Remove tudo (containers, volumes e imagens)                             |
 
 ### 6. Acesse a aplicação e testando
 
 * [X] [Rota para testar API](http://localhost:8088/api/ping)
 * [X] [Acessar o banco de dados](http://localhost:8081/index.php)
+  Use essas crendencias
 
-1. **Usuário: root**
-2. **Senha: root
-   *Obs*: phpMyAdmin, para facilitar o acesso e a visualização dos dados.**
+1. **Usuário**: `root`
+2. **Senha:** `root`
+   ***Obs*: phpMyAdmin, para facilitar o acesso e a visualização dos dados.**
 
 * [X] [Front End VueJS](http://localhost:5177/)

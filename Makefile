@@ -21,6 +21,10 @@ permissions:
 migrate:
 	docker-compose exec $(PHP_CONTAINER) php artisan migrate
 
+# Rodar migrations com refresh
+migrate-refresh:
+	docker-compose exec $(PHP_CONTAINER) php artisan migrate:refresh
+
 # Atalho para rodar tudo em ordem
 setup: up composer-install key-generate permissions migrate
 
