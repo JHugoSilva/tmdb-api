@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 import movieService from '@/api/movieService';
 import FooterMovies from '@/components/FooterMovies.vue';
 import NavMovies from '@/components/NavMovies.vue';
-import TableFavorites from '@/components/TableFavorites.vue';
+import MoviesFavorites from '@/components/MoviesFavorites.vue';
 
 const favorites = ref([])
 const genres = ref([])
@@ -71,6 +71,6 @@ onMounted(async()=>{
 
 <template>
    <NavMovies :genres="genres" @filter="setSelectedGenre"/>
-   <TableFavorites :favorites="favorites" @remove-favorito="handleRemoveFavorite"/>
+   <MoviesFavorites :favorites="favorites" @remove-favorito="handleRemoveFavorite"/>
    <FooterMovies/>
 </template>

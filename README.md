@@ -1,18 +1,50 @@
-# **Aplicação web desenvolvida com Laravel, VueJS e MySQL tudo Dockerizado**
+# **Aplicação web desenvolvida com Laravel, VueJS e MySQL**
 
 ### **Check List**
 
-* ✅ API RESTful
-* ✅ Integração com banco de dados
-* ✅ Buscar filmes pelo nome usando da API do TMDB
+* ✅ API com Laravel
+* ✅ Integração com banco de dados MySQL
+* ✅ Buscar filmes pelo nome usando na API do TMDB
 * ✅ Adicionar filmes aos favoritos, salvando os dados localmente
 * ✅ Listar filmes favoritos em uma tela dedicada, com filtro por gênero
 * ✅ Remover filmes da lista de favoritos
 
-## 🛠️ **Pré-requisitos**
+## **Pré-requisitos**
 
-* Docker instalado ([Download Docker](https://www.docker.com/get-started))
+* Docker instalado ([Download Docker](https://www.docker.com/get-started) - Docker + Docker Compose)
 * Git ([Download Git](https://git-scm.com/downloads))
+
+### Ambiente Dockerizado
+
+O projeto já está totalmente dockerizado. Os principais serviços são:
+
+* **app** : aplicação Laravel (PHP + Artisan)
+* **node** : aplicação Vue.js (Vite dev server)
+* **db** : banco de dados MySQL
+
+### Estrutura do CRUD de Filmes Favoritos
+
+A seguir estão os principais diretórios/arquivos onde o CRUD está implementado:
+
+#### Laravel (Backend)
+
+| Camada               | Caminho                                                    | Descrição                         |
+| -------------------- | ---------------------------------------------------------- | ----------------------------------- |
+| **Rotas**      | `routes/api.php`                                         | Define as rotas da API de filmes    |
+| **Controller** | `app/Http/Controllers/FilmeController.php`               | Controlador com a lógica do CRUD   |
+| **Model**      | `app/Models/Filme.php`                                   | Modelo do filme                     |
+| **Migration**  | `database/migrations/xxxx_xx_xx_create_filmes_table.php` | Criação da tabela `filmes`      |
+| **Seeder**     | `database/seeders/FilmeSeeder.php`                       | Popula o banco com dados de exemplo |
+| **Request**    | `app/Http/Requests/FilmeRequest.php` *(se houver)*     | Validação de dados                |
+
+#### Vue.js (Frontend)
+
+| Componente                          | Caminho                                                | Descrição                      |
+| ----------------------------------- | ------------------------------------------------------ | -------------------------------- |
+| **Listar Filmes da API TMDB** | `frontend/src/components/MoviesList.vue`             | Lista todos os filmes            |
+| **Lista Filmes Favoritados**  | `frontend/src/components/Filmes/MoviesFavorites.vue` | Formulário de cadastro/edição |
+| **Roteamento**                | `frontend/src/router/index.js`                       | Rotas SPA                        |
+| **Integração API**          | `frontend/src/api/movieService.js`                   | Comunicação com a API Laravel  |
 
 ## 🚀 **Passo a Passo para Execução**
 
@@ -87,7 +119,7 @@ DB_PASSWORD=root
 
 ---
 
-### 6. Executar Makefile
+### 6. Executar o BackEnd e FrontEnd com Makefile
 
 1. Corrigir permissões de pastas do Laravel
 2. Instalar dependências PHP com composer
@@ -105,14 +137,33 @@ DB_PASSWORD=root
 | `make down `            | Para containers                                                         |
 | `make clean`            | Remove tudo (containers, volumes e imagens)                             |
 
-### 6. Acesse a aplicação e testando
+### 6. Acesse a aplicação
 
-* [X] [Rota para testar API](http://localhost:8088/api/ping)
-* [X] [Acessar o banco de dados](http://localhost:8081/index.php)
-  Use essas crendencias
+Verificar se a API esta funcionando acesse essa rota:
+
+[Rota para testar API](http://localhost:8088/api/ping)
+
+Acessa o banco de dados
+
+[Acessar o banco de dados](http://localhost:8081/index.php)
+
+
+Use essas crendencias
 
 1. **Usuário**: `root`
 2. **Senha:** `root`
    ***Obs*: phpMyAdmin, para facilitar o acesso e a visualização dos dados.**
 
-* [X] [Front End VueJS](http://localhost:5177/)
+Acessar o FrontEnd
+
+[Click Aqui](http://localhost:5177/)
+
+### Como testar a aplicação
+
+#### 🖥️ Teste Manual (interface)
+
+1. Acesse o frontend: [http://localhost:5173](http://localhost:5173)
+2. Você poderá:
+   * Cadastrar um novo filme
+   * Listar os filmes favoritos
+   * Editar ou excluir um filme existente

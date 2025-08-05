@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import Swal from 'sweetalert2'
 import NavMovies from '@/components/NavMovies.vue';
-import TableMovies from '@/components/TableMovies.vue';
+import MoviesList from '@/components/MoviesList.vue';
 import FooterMovies from '@/components/FooterMovies.vue';
 import movieService from '@/api/movieService';
 
@@ -100,6 +100,6 @@ onMounted(() => {
 
 <template>
     <NavMovies @search="searchMovies"/>
-    <TableMovies :movies="movies" @add-favorito="handleAddFavorito"/>
+    <MoviesList :movies="movies" @add-favorito="handleAddFavorito"/>
     <FooterMovies/>
 </template>
